@@ -9,7 +9,7 @@ interface GroupCardProps {
 
 export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, groupGrowth, growthPercentage }) => {
   return (
-    <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+    <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-custom">
       <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,11 +35,16 @@ export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, gro
           {groupMoney}
         </h4>
       </div>
-      <div className="border-t border-blue-gray-50 p-4">
-        <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-          <strong className="text-green-500">{growthPercentage}</strong>&nbsp;{groupGrowth}
-        </p>
-      </div>
+      <div className="border-t border-blue-gray-50 p-4 flex">
+            <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
+                <strong className="text-green-500">{growthPercentage}</strong>&nbsp;{groupGrowth}
+            </p>
+            <div className='flex ml-auto'>
+                <p className="mr-4">Edit</p>
+                <p>Add Member</p>
+            </div>
+       </div>
+
     </div>
   );
 };
