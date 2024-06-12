@@ -41,11 +41,9 @@ export const Sidebar = ({ children, isMobileOpen, setIsMobileOpen }: SidebarProp
       <aside className={`h-screen ${isMobileOpen ? "absolute z-20" : "hidden md:block"}`}>
         <nav className={`h-full flex flex-col bg-white border-r shadow-sm ${isMobileOpen ? "w-64" : ""}`}>
           <div className="p-4 pb-2 flex justify-between items-center">
-            <img
-              src="https://img.logoipsum.com/243.svg"
-              className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"}`}
-              alt=""
-            />
+            <h1 className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"} bg-gradient-to-r from-indigo-400 via-indigo-400 to-indigo-900 bg-clip-text text-transparent font-bold text-xl`}>
+              Expenses Management
+            </h1>
             <button
               onClick={() => {
                 if (isMobile()) {

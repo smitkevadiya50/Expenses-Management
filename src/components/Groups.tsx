@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {GroupCard}  from './groups/GroupCard';
+import { GroupCard } from './groups/GroupCard';
 import { CreateGroupCard } from './groups/CreateGroupCard';
+import EditGroupModal from './groups/EditGroupModal';
 
 const Groups: React.FC = () => {
   const [groupData, setGroupData] = useState([
@@ -8,31 +9,38 @@ const Groups: React.FC = () => {
       groupName: "Group 1",
       groupMoney: "$53k",
       groupGrowth: "than last week",
-      growthPercentage: "+55%"
+      growthPercentage: "+55%",
+      members: ["Alice", "Bob"]
     },
     {
       groupName: "Group 2",
       groupMoney: "$76k",
       groupGrowth: "than last week",
-      growthPercentage: "+30%"
+      growthPercentage: "+30%",
+      members: ["Charlie", "Dave"]
     },
     {
       groupName: "Group 3",
       groupMoney: "$23k",
       groupGrowth: "than last week",
-      growthPercentage: "+20%"
+      growthPercentage: "+20%",
+      members: ["Eve", "Frank"]
     },
     {
       groupName: "Group 4",
       groupMoney: "$89k",
       groupGrowth: "than last week",
-      growthPercentage: "+70%"
+      growthPercentage: "+70%",
+      members: ["Grace", "Heidi"]
     }
   ]);
 
   const [newGroupName, setNewGroupName] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [selectedGroupIndex, setSelectedGroupIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCreateGroup = () => {
     if (newGroupName) {
@@ -42,11 +50,46 @@ const Groups: React.FC = () => {
           groupName: newGroupName,
           groupMoney: "$0k",
           groupGrowth: "than last week",
-          growthPercentage: "0%"
+          growthPercentage: "0%",
+          members: []
         }
       ]);
       setNewGroupName("");
       setIsCreating(false);
+    }
+  };
+
+  const handleEditGroup = (index: number) => {
+    setSelectedGroupIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedGroupIndex(null);
+  };
+
+  const handleSetGroupName = (name: string) => {
+    if (selectedGroupIndex !== null) {
+      const updatedGroups = [...groupData];
+      updatedGroups[selectedGroupIndex].groupName = name;
+      setGroupData(updatedGroups);
+    }
+  };
+
+  const handleAddMember = (member: string) => {
+    if (selectedGroupIndex !== null) {
+      const updatedGroups = [...groupData];
+      updatedGroups[selectedGroupIndex].members.push(member);
+      setGroupData(updatedGroups);
+    }
+  };
+
+  const handleRemoveMember = (member: string) => {
+    if (selectedGroupIndex !== null) {
+      const updatedGroups = [...groupData];
+      updatedGroups[selectedGroupIndex].members = updatedGroups[selectedGroupIndex].members.filter(m => m !== member);
+      setGroupData(updatedGroups);
     }
   };
 
@@ -68,6 +111,7 @@ const Groups: React.FC = () => {
               groupMoney={group.groupMoney}
               groupGrowth={group.groupGrowth}
               growthPercentage={group.growthPercentage}
+              onEdit={() => handleEditGroup(index)}
             />
           ))}
           <CreateGroupCard
@@ -80,6 +124,15 @@ const Groups: React.FC = () => {
           />
         </div>
       </div>
+      <EditGroupModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        groupName={selectedGroupIndex !== null ? groupData[selectedGroupIndex].groupName : ""}
+        setGroupName={handleSetGroupName}
+        members={selectedGroupIndex !== null ? groupData[selectedGroupIndex].members : []}
+        addMember={handleAddMember}
+        removeMember={handleRemoveMember}
+      />
       <p className='flex justify-center text-green-500 text-base font-bold'>Join The New Group!</p>
     </div>
   );

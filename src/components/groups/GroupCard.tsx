@@ -5,9 +5,10 @@ interface GroupCardProps {
   groupMoney: string;
   groupGrowth: string;
   growthPercentage: string;
+  onEdit: () => void;
 }
 
-export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, groupGrowth, growthPercentage }) => {
+export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, groupGrowth, growthPercentage , onEdit}) => {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-custom">
       <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -28,7 +29,7 @@ export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, gro
         </svg>
       </div>
       <div className="p-4 text-right">
-        <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
+        <p className="block antialiased font-sans text-sm leading-normal font-bold text-blue-gray-700">
           {groupName}
         </p>
         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
@@ -40,8 +41,8 @@ export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, gro
                 <strong className="text-green-500">{growthPercentage}</strong>&nbsp;{groupGrowth}
             </p>
             <div className='flex ml-auto'>
-                <p className="mr-4">Edit</p>
-                <p>Add Member</p>
+                <p className="mr-4 font-medium text-green-500" onClick={onEdit}>Edit</p>
+                <p className='font-medium text-blue-600'>Add Member</p>
             </div>
        </div>
 

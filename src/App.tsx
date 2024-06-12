@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="flex h-screen">
+      <div className="flex h-screen ">
         <div className="fixed top-0 left-0 w-full bg-white shadow-md z-20 flex items-center justify-between px-4 py-2 md:hidden">
           <button
             onClick={() => setIsMobileOpen((prev) => !prev)}
@@ -23,16 +23,16 @@ const App: React.FC = () => {
           <h1 className="text-lg font-semibold">App Name</h1>
         </div>
         <Sidebar isMobileOpen={isMobileOpen} setIsMobileOpen={setIsMobileOpen}>
+          <SidebarItem icon={<Home />} text="Dashboard" to="/dashboard" />          
           <SidebarItem icon={<Group />} text="Groups" to="/groups" />
           <SidebarItem icon={<SettingsIcon />} text="Personal Expenses" to="/personal-expenses" />
-          <SidebarItem icon={<Home />} text="Dashboard" to="/dashboard" />
           <SidebarItem icon={<SettingsIcon />} text="Settings" to="/settings" />
         </Sidebar>
         <div className="flex-grow p-4 overflow-auto mt-12 md:mt-0">
           <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/groups" element={<Groups />} />
             <Route path="/personal-expenses" element={<PersonalExpenses />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/" element={<Dashboard />} />
           </Routes>
