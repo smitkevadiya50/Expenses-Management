@@ -41,8 +41,7 @@ export const GroupCard: React.FC<GroupCardProps> = ({ groupName, groupMoney, gro
                 <strong className="text-green-500">{growthPercentage}</strong>&nbsp;{groupGrowth}
             </p>
             <div className='flex ml-auto'>
-                <p className="mr-4 font-medium text-green-500" onClick={onEdit}>Edit</p>
-                <p className='font-medium text-blue-600'>Add Member</p>
+                <p className="mr-4 font-medium text-indigo-500" onClick={onEdit}>Edit</p>
             </div>
        </div>
 
