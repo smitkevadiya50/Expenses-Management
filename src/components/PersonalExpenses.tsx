@@ -16,7 +16,7 @@ interface Expense {
 }
 
 const PersonalExpenses: React.FC = () => {
-  const [groups, setGroups] = useState<Group[]>([
+  const [groups] = useState<Group[]>([
     { name: 'Group 1', members: ['Alice', 'Bob', 'Charlie'] },
     { name: 'Group 2', members: ['Dave', 'Eve', 'Frank'] },
     { name: 'Group 3', members: ['Grace', 'Heidi', 'Ivan'] },
@@ -54,7 +54,7 @@ const PersonalExpenses: React.FC = () => {
     if (newExpense.group) {
       const selectedGroup = groups.find(group => group.name === newExpense.group);
       if (selectedGroup) {
-        setNewExpense({ ...newExpense, contributors: [], paidBy: '' });
+        setNewExpense(prevExpense => ({ ...prevExpense, contributors: [], paidBy: '' }));
       }
     }
   }, [newExpense.group, groups]);

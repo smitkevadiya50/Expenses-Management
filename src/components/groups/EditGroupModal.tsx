@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button, IconButton, Avatar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { blue } from '@mui/material/colors';
-import { Edit } from '@mui/icons-material';
 import SearchInpute from './SearchInpute';
 
 interface EditGroupModalProps {
