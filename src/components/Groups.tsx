@@ -25,13 +25,6 @@ const Groups: React.FC = () => {
       groupGrowth: "than last week",
       growthPercentage: "+20%",
       members: ["Eve", "Frank"]
-    },
-    {
-      groupName: "Group 4",
-      groupMoney: "$89k",
-      groupGrowth: "than last week",
-      growthPercentage: "+70%",
-      members: ["Grace", "Heidi"]
     }
   ]);
 

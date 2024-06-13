@@ -25,7 +25,7 @@ const App: React.FC = () => {
         <Sidebar isMobileOpen={isMobileOpen} setIsMobileOpen={setIsMobileOpen}>
           <SidebarItem icon={<Home />} text="Dashboard" to="/dashboard" />          
           <SidebarItem icon={<Group />} text="Groups" to="/groups" />
-          <SidebarItem icon={<SettingsIcon />} text="Personal Expenses" to="/personal-expenses" />
+          <SidebarItem icon={<SettingsIcon />} text="Add Expenses" to="/personal-expenses" />
           <SidebarItem icon={<SettingsIcon />} text="Settings" to="/settings" />
         </Sidebar>
         <div className="flex-grow p-4 overflow-auto mt-12 md:mt-0">
